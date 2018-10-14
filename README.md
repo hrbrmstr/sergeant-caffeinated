@@ -192,7 +192,7 @@ library(testthat)
 ##     is_null
 
 date()
-## [1] "Sun Oct 14 09:01:46 2018"
+## [1] "Sun Oct 14 09:31:23 2018"
 
 devtools::test()
 ## Loading sergeant.caffeinated
@@ -212,8 +212,6 @@ devtools::test()
 ## Failed:   0
 ## Warnings: 0
 ## Skipped:  0
-## 
-## Keep up the good work.
 ```
 
 ## sergeant Metrics

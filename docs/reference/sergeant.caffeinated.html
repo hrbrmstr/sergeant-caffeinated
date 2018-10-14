@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • sergeant.caffeinated</title>
+<title>Tools to Transform and Query Data with 'Apache' 'Drill' — sergeant.caffeinated • sergeant.caffeinated</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,13 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Tools to Transform and Query Data with 'Apache' 'Drill' — sergeant.caffeinated" />
+
+<meta property="og:description" content="Drill is an innovative low-latency distributed query engine designed to enable data
+exploration and analytics on both relational and non-relational datastores, scaling to
+petabytes of data. Users can query the data using standard SQL and BI tools without
+having to create and manage schemas. Some of the key features are:" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +52,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -95,72 +101,62 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Tools to Transform and Query Data with 'Apache' 'Drill'</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hrbrmstr/sergeant-caffeinated/blob/master/R/sergeant-caffeinated-package.r'><code>R/sergeant-caffeinated-package.r</code></a></small>
+    <div class="hidden name"><code>sergeant.caffeinated.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Drill is an innovative low-latency distributed query engine designed to enable data
+exploration and analytics on both relational and non-relational datastores, scaling to
+petabytes of data. Users can query the data using standard SQL and BI tools without
+having to create and manage schemas. Some of the key features are:</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+        
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="DrillJDBC.html">DrillJDBC()</a></code> </p>
-        </td>
-        <td><p>Drill's JDBC driver main class loader</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dbConnect-DrillJDBCDriver-method.html">dbConnect(<i>&lt;DrillJDBCDriver&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Connect to Drill JDBC with your own connection string</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dbDataType-DrillJDBCConnection-method.html">dbDataType(<i>&lt;DrillJDBCConnection&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Drill JDBC dbDataType</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="drill_jdbc.html">drill_jdbc()</a></code> <code><a href="drill_jdbc.html">src_drill_jdbc()</a></code> <code><a href="drill_jdbc.html">tbl(<i>&lt;src_drill_jdbc&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Connect to Drill using JDBC</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sergeant-caffeinated-exports.html">sergeant-caffeinated-exports</a></code> </p>
-        </td>
-        <td><p>sergeant exported operators</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sergeant.caffeinated.html">sergeant.caffeinated</a></code> </p>
-        </td>
-        <td><p>Tools to Transform and Query Data with 'Apache' 'Drill'</p></td>
-      </tr>
-    </tbody>
-    </table>
+    <ul>
+<li><p>Schema-free JSON document model similar to MongoDB and Elasticsearch</p></li>
+<li><p>Industry-standard APIs: ANSI SQL, ODBC/JDBC, RESTful APIs</p></li>
+<li><p>Extremely user and developer friendly</p></li>
+<li><p>Pluggable architecture enables connectivity to multiple datastores</p></li>
+</ul>
+    <p>Drill includes a distributed execution environment, purpose built for large-scale data
+processing. At the core of Drill is the "Drillbit" service which is responsible for
+accepting requests from the client, processing the queries, and returning results to
+the client.</p>
+<p>You can install and run a Drillbit service on one node or on many nodes to form a
+distributed cluster environment. When a Drillbit runs on each data node in a cluster,
+Drill can maximize data locality during query execution without moving data over the
+network or between nodes. Drill uses ZooKeeper to maintain cluster membership and health
+check information.</p>
+<p>Methods are provided to work with Drill via the native JDBC &amp; REST APIs along with R
+<code>DBI</code> and <code>dplyr</code> interfaces.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='https://drill.apache.org/docs/'>Drill documentation</a></p>
+    
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
+          </ul>
+
+    <h2>Author</h2>
+    
+Bob Rudis (bob@rud.is)
+
   </div>
 </div>
 

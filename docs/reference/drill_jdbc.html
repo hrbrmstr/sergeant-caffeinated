@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Connect to Drill using JDBC — drill_jdbc • sergeant</title>
+<title>Connect to Drill using JDBC — drill_jdbc • sergeant.caffeinated</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,27 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Connect to Drill using JDBC — drill_jdbc" />
+
+<meta property="og:description" content="The DRILL JDBC driver fully-qualified path must be placed in the
+DRILL_JDBC_JAR environment variable. This is best done via ~/.Renviron
+for interactive work. e.g. DRILL_JDBC_JAR=/usr/local/drill/jars/jdbc-driver/drill-jdbc-all-1.10.0.jar" />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,26 +61,37 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">sergeant</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">sergeant.caffeinated</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="http://github.com/hrbrmstr/sergeant">
+  <a href="https://github.com/hrbrmstr/sergeant-caffeinated">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -74,22 +99,32 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Connect to Drill using JDBC</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hrbrmstr/sergeant-caffeinated/blob/master/R/jdbc.r'><code>R/jdbc.r</code></a></small>
+    <div class="hidden name"><code>drill_jdbc.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>The DRILL JDBC driver fully-qualified path must be placed in the
 <code>DRILL_JDBC_JAR</code> environment variable. This is best done via <code>~/.Renviron</code>
 for interactive work. e.g. <code>DRILL_JDBC_JAR=/usr/local/drill/jars/jdbc-driver/drill-jdbc-all-1.10.0.jar</code></p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>drill_jdbc</span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='st'>"localhost:2181"</span>, <span class='kw'>cluster_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>schema</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>use_zk</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>use_zk</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='fu'>src_drill_jdbc</span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='st'>"localhost:2181"</span>, <span class='kw'>cluster_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>schema</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>use_zk</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='co'># S3 method for src_drill_jdbc</span>
+<span class='fu'><a href='sergeant-caffeinated-exports.html'>tbl</a></span>(<span class='no'>src</span>, <span class='no'>from</span>, <span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -112,28 +147,60 @@ function will make a comma-separated node string for you.</p></td>
       <td><p>are you connecting to a ZooKeeper instance (default: <code>TRUE</code>) or
 connecting to an individual DrillBit.</p></td>
     </tr>
+    <tr>
+      <th>src</th>
+      <td><p>A Drill "src" created with <code>src_drill()</code></p></td>
+    </tr>
+    <tr>
+      <th>from</th>
+      <td><p>A Drill view or table specification</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Extra parameters</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a JDBC connection object</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>[src_drill_jdbc()] wraps the JDBC [dbConnect()] connection instantation in
+[dbplyr::src_dbi()] to return the equivalent of the REST driver's [src_drill()].</p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href = 'https://drill.apache.org/docs/using-the-jdbc-driver/#using-the-jdbc-url-for-a-random-drillbit-connection'>https://drill.apache.org/docs/using-the-jdbc-driver/#using-the-jdbc-url-for-a-random-drillbit-connection</a></p>
+    <p><a href='https://drill.apache.org/docs/using-the-jdbc-driver/#using-the-jdbc-url-for-a-random-drillbit-connection'>https://drill.apache.org/docs/using-the-jdbc-driver/#using-the-jdbc-url-for-a-random-drillbit-connection</a></p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other Drill JDBC API: <code><a href='DrillJDBC.html'>DrillJDBC</a></code>,
+  <code><a href='dbConnect-DrillJDBCDriver-method.html'>dbConnect,DrillJDBCDriver-method</a></code>,
+  <code><a href='dbDataType-DrillJDBCConnection-method.html'>dbDataType,DrillJDBCConnection-method</a></code>,
+  <code><a href='drill_jdbc_internals.html'>db_data_type.DrillJDBCConnection</a></code></p>
+<p>Other Drill JDBC API: <code><a href='DrillJDBC.html'>DrillJDBC</a></code>,
+  <code><a href='dbConnect-DrillJDBCDriver-method.html'>dbConnect,DrillJDBCDriver-method</a></code>,
+  <code><a href='dbDataType-DrillJDBCConnection-method.html'>dbDataType,DrillJDBCConnection-method</a></code>,
+  <code><a href='drill_jdbc_internals.html'>db_data_type.DrillJDBCConnection</a></code></p>
+<p>Other Drill JDBC API: <code><a href='DrillJDBC.html'>DrillJDBC</a></code>,
+  <code><a href='dbConnect-DrillJDBCDriver-method.html'>dbConnect,DrillJDBCDriver-method</a></code>,
+  <code><a href='dbDataType-DrillJDBCConnection-method.html'>dbDataType,DrillJDBCConnection-method</a></code>,
+  <code><a href='drill_jdbc_internals.html'>db_data_type.DrillJDBCConnection</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
-  <span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'>drill_jdbc</span>(<span class='st'>"localhost:2181"</span>, <span class='st'>"main"</span>)
-  <span class='fu'><a href='drill_query.html'>drill_query</a></span>(<span class='no'>con</span>, <span class='st'>"SELECT * FROM cp.`employee.json`"</span>)
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'>drill_jdbc</span>(<span class='st'>"localhost:2181"</span>, <span class='st'>"main"</span>)
+<span class='fu'>drill_query</span>(<span class='no'>con</span>, <span class='st'>"SELECT * FROM cp.`employee.json`"</span>)
 
-  <span class='co'># you can also use the connection with RJDBC calls:</span>
-  <span class='fu'>dbGetQuery</span>(<span class='no'>con</span>, <span class='st'>"SELECT * FROM cp.`employee.json`"</span>)
+<span class='co'># you can also use the connection with RJDBC calls:</span>
+<span class='fu'>dbGetQuery</span>(<span class='no'>con</span>, <span class='st'>"SELECT * FROM cp.`employee.json`"</span>)
 
-  <span class='co'># for local/embedded mode with default configuration info</span>
-  <span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'>drill_jdbc</span>(<span class='st'>"localhost:31010"</span>, <span class='kw'>use_zk</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-})</div></pre>
+<span class='co'># for local/embedded mode with default configuration info</span>
+<span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'>drill_jdbc</span>(<span class='st'>"localhost:31010"</span>, <span class='kw'>use_zk</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -142,7 +209,11 @@ connecting to an individual DrillBit.</p></td>
       
       <li><a href="#value">Value</a></li>
 
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
@@ -156,11 +227,14 @@ connecting to an individual DrillBit.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+
