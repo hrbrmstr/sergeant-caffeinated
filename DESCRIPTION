@@ -1,24 +1,35 @@
-Package: sergeant-caffeinated
-Type: Package
-Title: sergeant-caffeinated title goes here otherwise CRAN checks fail
-Version: 0.1.0
-Date: 2018-10-14
+Package: sergeant.caffeinated
+Title: Tools to Transform and Query Data with 'Apache' 'Drill' ('JDBC')
+Version: 0.7.0
 Authors@R: c(
-    person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
-           comment = c(ORCID = "0000-0001-5670-2640"))
-  )
-Maintainer: Bob Rudis <bob@rud.is>
-Description: A good description goes here otherwise CRAN checks fail.
-URL: https://gitlab.com/hrbrmstr/sergeant-caffeinated
-BugReports: https://gitlab.com/hrbrmstr/sergeant-caffeinated/issues
-Encoding: UTF-8
-License: AGPL
-Suggests:
-    testthat,
-    covr
+      person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
+             comment = c(ORCID = "0000-0001-5670-2640")),
+      person("Edward", "Visel", email = "edward.visel@gmail.com", role = "ctb"),
+      person("Andy", "Hine", email = "andyyhine@gmail.com", role = "ctb")
+    )
+Description: 'Apache Drill' is a low-latency distributed query engine designed to enable 
+    data exploration and 'analytics' on both relational and non-relational 'datastores', 
+    scaling to petabytes of data. Methods are provided that enable working with 'Apache' 
+    'Drill' instances via the 'JDBC' 'DBI' and 'dplyr'/'dbplyr' idioms.
 Depends:
-    R (>= 3.2.0)
-Imports:
-    httr,
-    jsonlite
+    R (>= 3.1.2)
+URL: https://github.com/hrbrmstr/sergeant-caffeinated
+BugReports: https://github.com/hrbrmstr/sergeant-caffeinated/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    DBI (>= 0.7),
+    dplyr (>= 0.7.0),
+    dbplyr (>= 1.1.0),
+    htmltools (>= 0.3.6),
+    scales (>= 0.4.1),
+    RJDBC (>= 0.2-5),
+    utils,
+    methods,
+    magrittr
+Suggests:
+    rJava (>= 0.9-8),
+    testthat (>= 1.0.2),
+    covr (>= 3.0.0)
 RoxygenNote: 6.0.1.9000
