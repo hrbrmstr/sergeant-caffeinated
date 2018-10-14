@@ -1,0 +1,32 @@
+---
+output: rmarkdown::github_document
+---
+
+# sergeant-caffeinated
+
+## Description
+
+## What's Inside The Tin
+
+The following functions are implemented:
+
+## Installation
+
+```{r eval=FALSE}
+devtools::install_github("hrbrmstr/sergeant-caffeinated")
+```
+
+```{r message=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+options(width=120)
+```
+
+## Usage
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+library(sergeant-caffeinated)
+
+# current verison
+packageVersion("sergeant-caffeinated")
+
+```
+
