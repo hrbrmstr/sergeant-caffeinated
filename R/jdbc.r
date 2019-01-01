@@ -84,7 +84,7 @@ setMethod(
 
     }
 
-    .verify.JDBC.result(jc, "Unable to connect JDBC to ",url)
+    .verify.JDBC.result(jc, "Unable to connect JDBC to ",url, , conn=NULL)
 
     new("DrillJDBCConnection", jc=jc, identifier.quote=drv@identifier.quote)
 
@@ -240,6 +240,7 @@ db_data_type.DrillJDBCConnection <- function(con, fields, ...) {
   data_type <- function(x) {
     switch(
       class(x)[1],
+      integer64 = "BIGINT",
       logical = "BOOLEAN",
       integer = "INTEGER",
       numeric = "DOUBLE",
@@ -277,23 +278,23 @@ setMethod(
     ## if the statement starts with {call or {?= call then we use CallableStatement
     if (isTRUE(as.logical(grepl("^\\{(call|\\?= *call)", statement)))) {
       s <- rJava::.jcall(conn@jc, "Ljava/sql/CallableStatement;", "prepareCall", statement, check=FALSE)
-      .verify.JDBC.result(s, "Unable to execute JDBC callable statement ",statement)
+      .verify.JDBC.result(s, "Unable to execute JDBC callable statement ",statement, conn=conn)
       if (length(list(...))) .fillStatementParameters(s, list(...))
       if (!is.null(list)) .fillStatementParameters(s, list)
       r <- rJava::.jcall(s, "Ljava/sql/ResultSet;", "executeQuery", check=FALSE)
-      .verify.JDBC.result(r, "Unable to retrieve JDBC result set for ",statement)
+      .verify.JDBC.result(r, "Unable to retrieve JDBC result set for ",statement, conn=conn)
     } else if (length(list(...)) || length(list)) { ## use prepared statements if there are additional arguments
       s <- rJava::.jcall(conn@jc, "Ljava/sql/PreparedStatement;", "prepareStatement", statement, check=FALSE)
-      .verify.JDBC.result(s, "Unable to execute JDBC prepared statement ", statement)
+      .verify.JDBC.result(s, "Unable to execute JDBC prepared statement ", statement, conn=conn)
       if (length(list(...))) .fillStatementParameters(s, list(...))
       if (!is.null(list)) .fillStatementParameters(s, list)
       r <- rJava::.jcall(s, "Ljava/sql/ResultSet;", "executeQuery", check=FALSE)
-      .verify.JDBC.result(r, "Unable to retrieve JDBC result set for ",statement)
+      .verify.JDBC.result(r, "Unable to retrieve JDBC result set for ",statement, conn=conn)
     } else { ## otherwise use a simple statement some DBs fail with the above)
       s <- rJava::.jcall(conn@jc, "Ljava/sql/Statement;", "createStatement")
-      .verify.JDBC.result(s, "Unable to create simple JDBC statement ",statement)
+      .verify.JDBC.result(s, "Unable to create simple JDBC statement ",statement, conn=conn)
       r <- rJava::.jcall(s, "Ljava/sql/ResultSet;", "executeQuery", as.character(statement)[1], check=FALSE)
-      .verify.JDBC.result(r, "Unable to retrieve JDBC result set for ",statement)
+      .verify.JDBC.result(r, "Unable to retrieve JDBC result set for ",statement, conn=conn)
     }
     md <- rJava::.jcall(r, "Ljava/sql/ResultSetMetaData;", "getMetaData", check=FALSE)
     .verify.JDBC.result(md, "Unable to retrieve JDBC result set meta data for ",statement, " in dbSendQuery")

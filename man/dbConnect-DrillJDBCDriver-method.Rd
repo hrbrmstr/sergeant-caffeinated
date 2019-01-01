@@ -5,8 +5,8 @@
 \alias{dbConnect,DrillJDBCDriver-method}
 \title{Connect to Drill JDBC with your own connection string}
 \usage{
-\S4method{dbConnect}{DrillJDBCDriver}(drv, url, user = "", password = "",
-  ...)
+\S4method{dbConnect}{DrillJDBCDriver}(drv, url, user = "",
+  password = "", ...)
 }
 \arguments{
 \item{drv}{what you get back from \code{\link[=DrillJDBC]{DrillJDBC()}}}

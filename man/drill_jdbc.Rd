@@ -6,11 +6,11 @@
 \alias{tbl.src_drill_jdbc}
 \title{Connect to Drill using JDBC}
 \usage{
-drill_jdbc(nodes = "localhost:2181", cluster_id = NULL, schema = NULL,
-  use_zk = TRUE)
+drill_jdbc(nodes = "localhost:2181", cluster_id = NULL,
+  schema = NULL, use_zk = TRUE)
 
-src_drill_jdbc(nodes = "localhost:2181", cluster_id = NULL, schema = NULL,
-  use_zk = TRUE)
+src_drill_jdbc(nodes = "localhost:2181", cluster_id = NULL,
+  schema = NULL, use_zk = TRUE)
 
 \method{tbl}{src_drill_jdbc}(src, from, ...)
 }

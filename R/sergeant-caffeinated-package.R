@@ -30,14 +30,13 @@
 #' @references \href{https://drill.apache.org/docs/}{Drill documentation}
 #' @docType package
 #' @author Bob Rudis (bob@@rud.is)
+#' @importFrom scales comma
 #' @importFrom dplyr mutate select left_join bind_cols bind_rows data_frame tbl filter
 #' @importFrom dplyr db_desc src db_data_type db_explain sql_translate_env copy_to %>%
 #' @importFrom dplyr db_query_fields src_tbls sql_escape_ident
 #' @importFrom dbplyr build_sql sql_prefix sql_quote src_sql tbl_sql
 #' @importFrom dbplyr win_recycled win_current_group base_win base_agg base_scalar win_over sql
-#' @import utils
-#' @import DBI methods
-#' @importFrom scales comma
+#' @import utils DBI methods bit64
 #' @importClassesFrom RJDBC JDBCDriver JDBCConnection JDBCResult
 NULL
 

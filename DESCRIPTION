@@ -1,6 +1,6 @@
 Package: sergeant.caffeinated
 Title: Tools to Transform and Query Data with 'Apache' 'Drill' ('JDBC')
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
       person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
              comment = c(ORCID = "0000-0001-5670-2640"))
@@ -25,9 +25,10 @@ Imports:
     RJDBC (>= 0.2-5),
     utils,
     methods,
-    magrittr
+    magrittr,
+    bit64
 Suggests:
     rJava (>= 0.9-8),
     testthat (>= 1.0.2),
     covr (>= 3.0.0)
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 6.1.1
