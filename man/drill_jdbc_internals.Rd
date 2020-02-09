@@ -15,8 +15,7 @@
 
 \method{db_data_type}{tbl_drill_jdbc}(con, fields, ...)
 
-\S4method{dbSendQuery}{DrillJDBCConnection,character}(conn, statement, ...,
-  list = NULL)
+\S4method{dbSendQuery}{DrillJDBCConnection,character}(conn, statement, ..., list = NULL)
 
 \method{sql_escape_ident}{DrillJDBCConnection}(con, x)
 
@@ -31,10 +30,11 @@
 "SHOW DATABASES"
 }
 \seealso{
-Other Drill JDBC API: \code{\link{DrillJDBC}},
-  \code{\link{dbConnect,DrillJDBCDriver-method}},
-  \code{\link{dbDataType,DrillJDBCConnection-method}},
-  \code{\link{drill_jdbc}}
+Other Drill JDBC API: 
+\code{\link{DrillJDBC}()},
+\code{\link{dbConnect,DrillJDBCDriver-method}},
+\code{\link{dbDataType,DrillJDBCConnection-method}},
+\code{\link{drill_jdbc}()}
 }
 \concept{Drill JDBC API}
 \keyword{internal}

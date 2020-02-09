@@ -10,9 +10,10 @@ DrillJDBC()
 Drill's JDBC driver main class loader
 }
 \seealso{
-Other Drill JDBC API: \code{\link{dbConnect,DrillJDBCDriver-method}},
-  \code{\link{dbDataType,DrillJDBCConnection-method}},
-  \code{\link{db_data_type.DrillJDBCConnection}},
-  \code{\link{drill_jdbc}}
+Other Drill JDBC API: 
+\code{\link{dbConnect,DrillJDBCDriver-method}},
+\code{\link{dbDataType,DrillJDBCConnection-method}},
+\code{\link{db_data_type.DrillJDBCConnection}()},
+\code{\link{drill_jdbc}()}
 }
 \concept{Drill JDBC API}
