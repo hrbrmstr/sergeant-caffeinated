@@ -1,111 +1,101 @@
 ---
-output: github_document
+output: rmarkdown::github_document
 editor_options: 
   chunk_output_type: console
 ---
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "##",
-  fig.path = "README-"
-)
+```{r pkg-knitr-opts, include=FALSE}
+hrbrpkghelpr::global_opts()
 ```
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1248912.svg)](https://doi.org/10.5281/zenodo.1248912) 
-[![Travis-CI Build Status](https://travis-ci.org/hrbrmstr/sergeant-caffeinated.svg?branch=master)](https://travis-ci.org/hrbrmstr/sergeant-caffeinated) 
-[![Coverage Status](https://codecov.io/gh/hrbrmstr/sergeant-caffeinated/branch/master/graph/badge.svg)](https://codecov.io/gh/hrbrmstr/sergeant-caffeinated)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sergeant-caffeinated)](https://cran.r-project.org/package=sergeant-caffeinated)
+```{r badges, results='asis', echo=FALSE, cache=FALSE}
+hrbrpkghelpr::stinking_badges()
+```
 
-# 💂☕️ sergeant.caffeinated
+```{r description, results='asis', echo=FALSE, cache=FALSE}
+hrbrpkghelpr::yank_title_and_description()
+```
 
-Tools to Transform and Query Data with 'Apache' 'Drill' (JDBC)
-
-## NOTE
-
-This is the Java/JDBC-interface to Apache Drill. For non-Java/JDBC, see the `sergeant` package ([GitLab](https://gitlab.com/hrbrmstr/sergeant/); [GitHub](https://github.com/hrbrmstr/sergeant/)).
-
-## Description
-
-Drill + `sergeant` is (IMO) a streamlined alternative to Spark + `sparklyr` if you don't need the ML components of Spark (i.e. just need to query "big data" sources, need to interface with parquet, need to combine disparate data source types — json, csv, parquet, rdbms - for aggregation, etc). Drill also has support for spatial queries.
-
-Using Drill SQL queries that reference parquet files on a local linux or macOS workstation can often be more performant than doing the same data ingestion & wrangling work with R (especially for large or disperate data sets). Drill can often help further streaming workflows that infolve wrangling many tiny JSON files on a daily basis.
-
-Drill can be obtained from <https://drill.apache.org/download/> (use "Direct File Download"). Drill can also be installed via [Docker](https://drill.apache.org/docs/running-drill-on-docker/). For local installs on Unix-like systems, a common/suggestion location for the Drill directory is  `/usr/local/drill` as the install directory. 
-
-Drill embedded (started using the `$DRILL_BASE_DIR/bin/drill-embedded` script) is a super-easy way to get started playing with Drill on a single workstation and most of many workflows can "get by" using Drill this way.
+## What's Inside The Tin
 
 The following functions are implemented:
 
-**`DBI`** (RJDBC)
-
-- `drill_jdbc`:	Connect to Drill using JDBC, enabling use of said idioms. See `RJDBC` for more info.
-
-NOTE: The DRILL JDBC driver fully-qualified path must be placed in the `DRILL_JDBC_JAR` environment variable. This is best done via `~/.Renviron` for interactive work. i.e. `DRILL_JDBC_JAR=/usr/local/drill/jars/drill-jdbc-all-1.14.0.jar`
-
-**`dplyr`**: (RJDBC)
-
-- `src_drill_jdbc`: Connect to Drill (using dplyr & RJDBC) + supporting functions
+```{r ingredients, results='asis', echo=FALSE, cache=FALSE}
+hrbrpkghelpr::describe_ingredients()
+```
 
 ## Installation
 
-```{r eval=FALSE}
-devtools::install_git("https://gitlab.com/hrbrmstr/sergeant-caffeinated")
-# OF
-devtools::install_github("hrbrmstr/sergeant-caffeinated")
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-options(width=120)
+```{r install-ex, results='asis', eval=TRUE, echo=TRUE, cache=FALSE}
+remotes::install_github("hrbrmstr/sergeant-caffeinated")
 ```
 
 ## Usage
 
-```{r dplyr-01, message=FALSE}
+```{r lib-ex}
 library(sergeant.caffeinated)
+
+# current version
+packageVersion("sergeant.caffeinated")
+
+```
+
+```{r dplyr-01, message=FALSE}
 library(tidyverse)
 
 # use localhost if running standalone on same system otherwise the host or IP of your Drill server
-ds <- src_drill_jdbc("localhost")  #ds
-db <- tbl(ds, "cp.`employee.json`") 
+test_host <- Sys.getenv("DRILL_TEST_HOST", "localhost")
+
+be_quiet()
+
+con <- dbConnect(drv = DrillJDBC(), sprintf("jdbc:drill:zk=%s", test_host))
+
+db <- tbl(con, "cp.`employee.json`")
 
 # without `collect()`:
-count(db, gender, marital_status)
+db %>% 
+  count(
+    gender, 
+    marital_status
+  )
 
-count(db, gender, marital_status) %>% collect()
+db %>% 
+  count(
+    gender, 
+    marital_status
+  ) %>% 
+  collect()
 
-group_by(db, position_title) %>% 
+db %>% 
+  group_by(position_title) %>% 
   count(gender) -> tmp2
 
 group_by(db, position_title) %>% 
   count(gender) %>% 
   ungroup() %>% 
-  mutate(full_desc=ifelse(gender=="F", "Female", "Male")) %>% 
+  mutate(
+    full_desc = ifelse(gender=="F", "Female", "Male")
+  ) %>% 
   collect() %>% 
-  select(Title=position_title, Gender=full_desc, Count=n)
+  select(
+    Title = position_title, 
+    Gender = full_desc, 
+    Count = n
+  )
 
 arrange(db, desc(employee_id)) %>% print(n=20)
 
-mutate(db, position_title=tolower(position_title)) %>%
-  mutate(salary=as.numeric(salary)) %>% 
-  mutate(gender=ifelse(gender=="F", "Female", "Male")) %>%
-  mutate(marital_status=ifelse(marital_status=="S", "Single", "Married")) %>% 
+db %>% 
+  mutate(
+    position_title = tolower(position_title),
+    salary = as.numeric(salary),
+    gender = ifelse(gender == "F", "Female", "Male"),
+    marital_status = ifelse(marital_status == "S", "Single", "Married")
+  ) %>%
   group_by(supervisor_id) %>% 
-  summarise(underlings_count=n()) %>% 
+  summarise(
+    underlings_count = n()
+  ) %>% 
   collect()
-```
-
-```
-### Test Results
-
-```{r}
-library(sergeant.caffeinated)
-library(testthat)
-
-date()
-
-devtools::test()
 ```
 
 ## sergeant Metrics
@@ -116,5 +106,4 @@ cloc::cloc_pkg_md()
 
 ## Code of Conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). 
-By participating in this project you agree to abide by its terms.
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
