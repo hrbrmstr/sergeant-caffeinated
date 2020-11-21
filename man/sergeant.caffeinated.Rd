@@ -23,14 +23,13 @@ processing. At the core of Drill is the "Drillbit" service which is responsible 
 accepting requests from the client, processing the queries, and returning results to
 the client.
 
-You can install and run a Drillbit service on one node or on many nodes to form a
-distributed cluster environment. When a Drillbit runs on each data node in a cluster,
+You can install and run a drillbit service on one node or on many nodes to form a
+distributed cluster environment. When a drillbit runs on each data node in a cluster,
 Drill can maximize data locality during query execution without moving data over the
 network or between nodes. Drill uses ZooKeeper to maintain cluster membership and health
 check information.
 
-Methods are provided to work with Drill via the native JDBC & REST APIs along with R
-\code{DBI} and \code{dplyr} interfaces.
+An RDBC interface with a thin set of 'dbplyr` helper functions is provided.
 }
 \references{
 \href{https://drill.apache.org/docs/}{Drill documentation}

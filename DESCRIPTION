@@ -1,34 +1,32 @@
 Package: sergeant.caffeinated
-Title: Tools to Transform and Query Data with 'Apache' 'Drill' ('JDBC')
-Version: 0.2.1
+Title: RJDBC Interface for Apache Drill
+Version: 0.3.0
 Authors@R: c(
       person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
              comment = c(ORCID = "0000-0001-5670-2640"))
     )
-Description: 'Apache Drill' is a low-latency distributed query engine designed to enable 
-    data exploration and 'analytics' on both relational and non-relational 'datastores', 
-    scaling to petabytes of data. Methods are provided that enable working with 'Apache' 
-    'Drill' instances via the 'JDBC' 'DBI' and 'dplyr'/'dbplyr' idioms.
-Depends:
-    R (>= 3.1.2)
+Description: Apache Drill is a low-latency distributed query engine designed to enable 
+    data exploration and analytics on both relational and non-relational datastores, 
+    scaling to petabytes of data. An RDBC interface with a thin set of 'dbplyr` 
+    helper functions is provided.
 URL: https://github.com/hrbrmstr/sergeant-caffeinated
 BugReports: https://github.com/hrbrmstr/sergeant-caffeinated/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: 
+    R (>= 3.6.0),
+    rJava,
+    RJDBC,
+    DBI,
+    dplyr,
+    dbplyr (>= 2.0.0)
 Imports: 
-    DBI (>= 0.7),
-    dplyr (>= 0.7.0),
-    dbplyr (>= 1.1.0),
-    htmltools (>= 0.3.6),
-    scales (>= 0.4.1),
-    RJDBC (>= 0.2-5),
     utils,
     methods,
     magrittr,
     bit64
-Suggests:
-    rJava (>= 0.9-8),
-    testthat (>= 1.0.2),
-    covr (>= 3.0.0)
-RoxygenNote: 7.0.2
+Suggests: 
+    covr (>= 3.0.0), 
+    tinytest
+RoxygenNote: 7.1.1

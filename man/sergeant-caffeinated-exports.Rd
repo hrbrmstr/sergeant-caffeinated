@@ -3,7 +3,6 @@
 \name{sergeant-caffeinated-exports}
 \alias{sergeant-caffeinated-exports}
 \alias{\%>\%}
-\alias{tbl}
 \title{sergeant exported operators}
 \description{
 The following functions are imported and then re-exported

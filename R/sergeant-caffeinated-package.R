@@ -17,29 +17,25 @@
 #' accepting requests from the client, processing the queries, and returning results to
 #' the client.
 #'
-#' You can install and run a Drillbit service on one node or on many nodes to form a
-#' distributed cluster environment. When a Drillbit runs on each data node in a cluster,
+#' You can install and run a drillbit service on one node or on many nodes to form a
+#' distributed cluster environment. When a drillbit runs on each data node in a cluster,
 #' Drill can maximize data locality during query execution without moving data over the
 #' network or between nodes. Drill uses ZooKeeper to maintain cluster membership and health
 #' check information.
 #'
-#' Methods are provided to work with Drill via the native JDBC & REST APIs along with R
-#' \code{DBI} and \code{dplyr} interfaces.
+#' An RDBC interface with a thin set of 'dbplyr` helper functions is provided.
 #'
 #' @name sergeant.caffeinated
 #' @references \href{https://drill.apache.org/docs/}{Drill documentation}
 #' @docType package
 #' @author Bob Rudis (bob@@rud.is)
-#' @importFrom scales comma
-#' @importFrom dplyr mutate select left_join bind_cols bind_rows data_frame tbl filter
-#' @importFrom dplyr db_desc src db_data_type db_explain sql_translate_env copy_to %>%
-#' @importFrom dplyr db_query_fields src_tbls sql_escape_ident
-#' @importFrom dbplyr build_sql sql_prefix sql_quote src_sql tbl_sql
-#' @importFrom dbplyr win_recycled win_current_group base_win base_agg base_scalar win_over sql
-#' @import utils DBI methods bit64
+#' @import dbplyr DBI
+#' @importFrom rJava J .jinit .jnew is.jnull .jaddClassPath .jfindClass .jcheck .jnull .jpackage
+#' @importFrom dplyr sql_translate_env
+#' @importFrom utils globalVariables
+#' @importFrom methods setClass setGeneric setMethod callNextMethod new initialize show
 #' @importClassesFrom RJDBC JDBCDriver JDBCConnection JDBCResult
 NULL
-
 
 #' sergeant exported operators
 #'
@@ -51,11 +47,6 @@ NULL
 NULL
 
 #' @name %>%
-#' @export
-#' @rdname sergeant-caffeinated-exports
-NULL
-
-#' @name tbl
 #' @export
 #' @rdname sergeant-caffeinated-exports
 NULL

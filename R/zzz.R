@@ -1,3 +1,5 @@
 .onLoad <- function(libname, pkgname) {
-  if (requireNamespace("rJava")) rJava::.jpackage(pkgname, lib.loc = libname)
+  rJava::.jpackage(pkgname, lib.loc = libname)
+  rJava::.jaddClassPath(system.file("java", "RJDBC.jar", package = "RJDBC"))
+  rJava::J("java.util.logging.LogManager")$getLogManager()$reset()
 }
